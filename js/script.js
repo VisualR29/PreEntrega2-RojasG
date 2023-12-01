@@ -27,6 +27,11 @@ function deleteTask() {
     let newTaskList = taskList.filter(function (list) {
         return list.id !== idDelete;
     });
+    if (taskList.length == newTaskList.length) {
+        alert("No se encontro tarea a eliminar");
+    } else {
+        alert("Tarea eliminada!");
+    }
     taskList = newTaskList;
 }
 
