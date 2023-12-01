@@ -23,7 +23,7 @@ function addTask() {
 }
 
 function deleteTask() {
-    let idDelete = +prompt("Ingrese el 'id' de la tarea a eliminar") - 1;
+    let idDelete = +prompt("Ingrese el 'id' de la tarea a eliminar");
     let newTaskList = taskList.filter(function (list) {
         return list.id !== idDelete;
     });
