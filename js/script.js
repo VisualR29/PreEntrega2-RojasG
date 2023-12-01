@@ -6,8 +6,9 @@ function Task(id, task, priority) {
 
 let activate = true
 let taskList = [];
-let id = 0;
+let maxPriority = 0;
 let opc = 0;
+let id = 0;
 
 function addTask() {
     let taskTask = prompt("Ingrese la tarea a agregar: ");
@@ -16,6 +17,9 @@ function addTask() {
     const newTask = new Task(idTask, taskTask, priorityTask);
     taskList.push(newTask);
     id += 1;
+    if (priorityTask > maxPriority) {
+        maxPriority = priorityTask;
+    }
 }
 
 function deleteTask() {
@@ -38,14 +42,37 @@ function showList() {
     alert(`Lista de tareas:\n${answer}`);
 }
 
+function comparateByPriority(elementA, elementB) {
+    return elementB.priority - elementA.priority;
+}
+
+function showByPriority() {
+    let answerPriority = ``;
+    let taskListPriority = taskList.slice();
+    taskListPriority.sort(comparateByPriority);
+    
+    taskListPriority.forEach(element => {
+        let idNumber = element.id;
+        let task = element.task;
+        let priority = element.priority;
+        let elementAnswer = `${idNumber}: ${task}, prioridad de ${priority}\n`;
+        answerPriority += elementAnswer;
+    });
+    alert(`Lista de tareas ordenada por prioridad:\n${answerPriority}`);
+}
+
+//Si lees esto, te has ganado un cafe ☕☕☕, Disfrutalo!!!
+
 while (activate) {
-    opc = +prompt("Lista de tareas!\nIngrese el número de la opción\n1: Agregar tarea\n2: Eliminar tarea\n3: Ver la lista de tareas\n4:Cerrar la lista de tareas")
+    opc = +prompt("Lista de tareas!\nIngrese el número de la opción\n1: Agregar tarea\n2: Eliminar tarea\n3: Ver la lista de tareas\n4: Mostrar la lista por orden de prioridad\n5: Cerrar la lista de tareas")
     if (opc == 1) {
         addTask();
     } else if (opc == 2) {
         deleteTask();
     } else if (opc == 3) {
         showList();
+    } else if (opc == 4) {
+        showByPriority();
     } else {
         activate = false;
     }
