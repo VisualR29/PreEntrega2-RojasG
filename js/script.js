@@ -12,8 +12,8 @@ let id = 0;
 
 function addTask() {
     let taskTask = prompt("Ingrese la tarea a agregar: ");
-    let priorityTask = +prompt("Ingrese la prioridad de la tarea");
-    let idTask = id
+    let priorityTask = +prompt("Ingrese la prioridad de la tarea (1 del al 10, 10 siendo lo más importante)");
+    let idTask = id + 1
     const newTask = new Task(idTask, taskTask, priorityTask);
     taskList.push(newTask);
     id += 1;
@@ -23,7 +23,7 @@ function addTask() {
 }
 
 function deleteTask() {
-    let idDelete = +prompt("Ingrese el 'id' de la tarea a eliminar");
+    let idDelete = +prompt("Ingrese el 'id' de la tarea a eliminar") - 1;
     let newTaskList = taskList.filter(function (list) {
         return list.id !== idDelete;
     });
